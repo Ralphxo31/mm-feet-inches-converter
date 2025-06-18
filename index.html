@@ -2,21 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MM ↔ Feet-Inches Converter</title>
+  <title>MM ↔ Feet-Inches Converter (Engineer Style)</title>
   <style>
-    body { font-family: sans-serif; padding: 20px; }
-    input { margin: 5px; }
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+    input {
+      margin: 5px;
+      padding: 5px;
+      width: 120px;
+    }
+    button {
+      padding: 6px 12px;
+      margin: 5px;
+    }
+    h1 {
+      font-size: 1.4em;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
   <h1>MM ↔ Feet-Inches Converter (Engineer Style)</h1>
 
-  <h2>MM to Feet-Inches</h2>
+  <h2>Convert MM to Feet-Inches</h2>
   <input type="number" id="mmInput" placeholder="Enter mm" />
   <button onclick="convertToFeetInches()">Convert</button>
   <p id="feetInchesOutput"></p>
 
-  <h2>Feet-Inches to MM</h2>
+  <h2>Convert Feet-Inches to MM</h2>
   <input type="number" id="feetInput" placeholder="Feet" />
   <input type="number" id="inchesInput" placeholder="Inches" />
   <button onclick="convertToMM()">Convert</button>
@@ -31,7 +48,7 @@
       const totalFeet = meters * 3.28084;
       const feet = Math.floor(totalFeet);
       const inchesDecimal = (totalFeet - feet) * 12;
-      const inches = Math.floor(inchesDecimal);  // Conservative rounding
+      const inches = Math.floor(inchesDecimal); // Conservative rounding
 
       document.getElementById('feetInchesOutput').innerText =
         `${mm} [${feet}' ${inches}"]`;
@@ -46,7 +63,7 @@
       const mm = totalInches * 25.4;
 
       document.getElementById('mmOutput').innerText =
-        `${feet}' ${inches}" = ${Math.round(mm)} mm`;
+        `${feet}' ${inches}" = ${Math.floor(mm)} mm`;
     }
   </script>
 </body>
