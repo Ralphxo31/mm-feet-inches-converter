@@ -44,11 +44,9 @@
       const mm = parseFloat(document.getElementById('mmInput').value);
       if (isNaN(mm)) return;
 
-      const totalInches = mm / 25.4;
-      const totalInchesRoundedDown = Math.floor(totalInches); // Force full rounding down
-
-      const feet = Math.floor(totalInchesRoundedDown / 12);
-      const inches = totalInchesRoundedDown % 12;
+      const totalInches = Math.floor(mm / 25.4); // Total inches, rounded down
+      const feet = Math.floor(totalInches / 12);
+      const inches = totalInches % 12;
 
       document.getElementById('feetInchesOutput').innerText =
         `${mm} [${feet}' ${inches}"]`;
@@ -60,10 +58,10 @@
       if (isNaN(feet) || isNaN(inches)) return;
 
       const totalInches = (feet * 12) + inches;
-      const mm = totalInches * 25.4;
+      const mm = Math.floor(totalInches * 25.4); // Conservative
 
       document.getElementById('mmOutput').innerText =
-        `${feet}' ${inches}" = ${Math.floor(mm)} mm`;
+        `${feet}' ${inches}" = ${mm} mm`;
     }
   </script>
 </body>
