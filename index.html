@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MM ↔ Feet-Inches Converter</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    input { margin: 5px; }
+  </style>
+</head>
+<body>
+  <h1>MM ↔ Feet-Inches Converter (Engineer Style)</h1>
+
+  <h2>MM to Feet-Inches</h2>
+  <input type="number" id="mmInput" placeholder="Enter mm" />
+  <button onclick="convertToFeetInches()">Convert</button>
+  <p id="feetInchesOutput"></p>
+
+  <h2>Feet-Inches to MM</h2>
+  <input type="number" id="feetInput" placeholder="Feet" />
+  <input type="number" id="inchesInput" placeholder="Inches" />
+  <button onclick="convertToMM()">Convert</button>
+  <p id="mmOutput"></p>
+
+  <script>
+    function convertToFeetInches() {
+      const mm = parseFloat(document.getElementById('mmInput').value);
+      if (isNaN(mm)) return;
+
+      const meters = mm / 1000;
+      const totalFeet = meters * 3.28084;
+      const feet = Math.floor(totalFeet);
+      const inchesDecimal = (totalFeet - feet) * 12;
+      const inches = Math.floor(inchesDecimal);  // Conservative rounding
+
+      document.getElementById('feetInchesOutput').innerText =
+        `${mm} [${feet}' ${inches}"]`;
+    }
+
+    function convertToMM() {
+      const feet = parseFloat(document.getElementById('feetInput').value);
+      const inches = parseFloat(document.getElementById('inchesInput').value);
+      if (isNaN(feet) || isNaN(inches)) return;
+
+      const totalInches = (feet * 12) + inches;
+      const mm = totalInches * 25.4;
+
+      document.getElementById('mmOutput').innerText =
+        `${feet}' ${inches}" = ${Math.round(mm)} mm`;
+    }
+  </script>
+</body>
+</html>
