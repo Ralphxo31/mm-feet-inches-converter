@@ -44,11 +44,11 @@
       const mm = parseFloat(document.getElementById('mmInput').value);
       if (isNaN(mm)) return;
 
-      const meters = mm / 1000;
-      const totalFeet = meters * 3.28084;
-      const feet = Math.floor(totalFeet);
-      const inchesDecimal = (totalFeet - feet) * 12;
-      const inches = Math.floor(inchesDecimal); // Conservative rounding
+      const totalInches = mm / 25.4;
+      const totalInchesRoundedDown = Math.floor(totalInches); // Force full rounding down
+
+      const feet = Math.floor(totalInchesRoundedDown / 12);
+      const inches = totalInchesRoundedDown % 12;
 
       document.getElementById('feetInchesOutput').innerText =
         `${mm} [${feet}' ${inches}"]`;
